@@ -26,6 +26,15 @@ UPDATE adhérents
 SET adresse = '15 rue de beaumont'
 WHERE id_adhérent = 2;
 
+/*5*/
+CREATE VIEW livres_emprunts AS
+SELECT adhérents.id_adhérent, adhérents.nom, livres.titre, emprunts.date_retour
+FROM adhérents
+JOIN emprunts ON adhérents.id_adhérent = emprunts.id_adhérent
+JOIN livres ON emprunts.isbn = livres.isbn
+WHERE emprunts.date_retour < CURDATE();
+
+
 /*8*/
 DELETE FROM adhérents
 WHERE id_adhérent = 4;
